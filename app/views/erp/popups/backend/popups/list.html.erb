@@ -1,0 +1,78 @@
+<table class="table table-advance table-hover table-striped table-checkable order-column">
+    <thead>
+        <tr>
+            <th width='1%'>
+                <%= erp_datalist_check_all %>
+            </th>
+            <% if get_columns(params).include?("name") %>
+                <th class="sortable" sort-by='erp_popups_popups.name'>
+                    <%= t('.name') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("status") %>
+                <th>
+                    <%= t('status') %>
+                </th>
+            <% end %>
+            <th width="7%" class="sortable text-nowrap" sort-by='erp_popups_popups.custom_order'>
+                <%= t('.custom_order') %>
+            </th>
+            <% if get_columns(params).include?("creator") %>
+                <th class="text-center">
+                    <%= t('creator') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("created_at") %>
+                <th class="sortable" sort-by='erp_popups_popups.created_at'>
+                    <%= t('created_at') %>
+                </th>
+            <% end %>
+            <th width="7%"><%= t('actions') %></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @popups.each do |popup| %>
+            <tr class="odd gradeX <%= 'blurred' if popup.is_inactive? %>">
+                <td>
+                    <%= erp_datalist_check_row(id: popup.id) %>
+                </td>
+                <% if get_columns(params).include?("name") %>
+                <td>
+                    <span class="title"><%= popup.name %></span>
+                </td>
+                <% end %>
+                <% if get_columns(params).include?("status") %>
+                    <td>
+                        <%= status_label(popup.status) %>
+                    </td>
+                <% end %>
+                <td class="text-center text-semibold">
+                    <%= erp_datalist_order_column({
+                        item: popup,
+                        move_up_url: erp_popups.move_up_backend_popups_path(id: popup),
+                        move_down_url: erp_popups.move_down_backend_popups_path(id: popup),
+                        sort_by: 'erp_popups_popups.custom_order'
+                    }) %>
+                </td>
+                <% if get_columns(params).include?("creator") %>
+                    <td>
+                        <%= erp_component('avatar', {
+                            user: popup.creator
+                        }) %>
+                    </td>
+                <% end %>
+                <% if get_columns(params).include?("created_at") %>
+                    <td><%= popup.created_at.strftime("%d/%m/%Y") %></td>
+                <% end %>
+                <td>
+                    <%= popup_dropdown_actions(popup) %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+<% if @popups.empty? %>
+    <div class="datalist-empty-line"><%= t('no_matching_records_found') %></div>
+<% end %>
+
+<%= erp_datalist_pagination(@popups) %>

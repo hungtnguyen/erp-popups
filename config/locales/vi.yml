@@ -1,0 +1,39 @@
+vi:
+  erp:
+    popups:
+      backend:
+        popups:
+          set_active:
+            success: "Kích hoạt popup thành công."
+          set_inactive:
+            success: "Ngưng kích hoạt popup thành công."
+          destroy:
+            success: "Xóa popup thành công."
+          index:
+            popups: "Pop-up"
+            create: "Thêm mới"
+            active: "Đang kích hoạt"
+            inactive: "Không kích hoạt"
+            name: "Tên popup"
+          list:
+            name: "Tên popup"
+            active: "Đang kích hoạt"
+            inactive: "Không kích hoạt"
+            custom_order: "TT/SX"
+            set_active: "Kích hoạt"
+            set_active_confirm: "Bạn có muốn kích hoạt popup này?"
+            set_inactive: "Ngưng kích hoạt"
+            set_inactive_confirm: "Bạn có muốn ngưng kích hoạt popup này?"
+            delete: "Xóa popup"
+            delete_confirm: "Popup này sẽ bị xóa khỏi hệ thống. Bạn có chắc muốn xóa popup này?"
+          new:
+            popups: "Pop-up"
+            create: "Thêm mới"
+          edit:
+            popups: "Pop-up"
+            create: "Thêm mới"
+          form:
+            name: "Tên pop-up"
+            enter_name: "Nhập tên popup"
+            content: "Nội dung hiển thị"
+            enter_content: "Soạn nội dung popup hoặc upload hình ảnh tại đây"

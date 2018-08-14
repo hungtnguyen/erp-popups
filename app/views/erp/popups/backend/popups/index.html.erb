@@ -1,0 +1,43 @@
+<% content_for :title do %>
+    <%= t('.popups') %>
+<% end %>
+
+<% content_for :page_title do %>
+    <i class="icon-users"></i> <%= t('.popups') %>
+<% end %>
+
+<% content_for :page_toolbar do %>
+    <%= erp_component('button/create', {
+        text: t('.create'),
+        href: erp_popups.new_backend_popup_path
+    }) %>
+<% end %>
+
+<%= erp_datalist(
+    url: erp_popups.list_backend_popups_path,
+    keyword: true,
+    filters: [
+        {
+            text: t('.active'), name: 'status', value: Erp::Popups::Popup::STATUS_ACTIVE, checked: true
+        },
+        {
+            text: t('.inactive'), name: 'status', value: Erp::Popups::Popup::STATUS_INACTIVE, checked: false
+        },
+        
+    ],
+    columns: [
+        {
+            text: t('.name'), name: 'name', value: true, checked: true
+        },
+        {
+            text: t('status'), name: 'status', value: true, checked: true
+        },
+        {
+            text: t('creator'), name: 'creator', value: true, checked: true
+        },
+        {
+            text: t('created_at'), name: 'created_at', value: true, checked: true
+        }
+    ],
+    sort: { sort_by: 'erp_popups_popups.created_at', sort_direction: 'desc' }
+) %>
